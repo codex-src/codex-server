@@ -1,0 +1,66 @@
+schema {
+	query: Query
+	mutation: Mutation
+}
+
+type Query {
+	ping: Boolean!
+	testUsername(username: String!): Boolean!
+	nextMonth: Date!
+	nextYear: Date!
+	me: User!
+	notes(limit: Int, offset: Int): [Note!]!
+	note(noteID: ID!): Note!
+}
+
+type Mutation {
+	createUser(user: CreateUserInput!): User!
+	resetPassword(username: String!, keychain: String!, newPassword: String!): User!
+	# changePassword(newPassword: String!): Boolean!
+	createSession(username: String!, password: String!): User!
+	revokeSession: Boolean!
+	createNote(title: String!, data: String!): Note!
+	updateNote(noteID: ID!, title: String!, data: String!): Note!
+	updateNoteTitle(noteID: ID!, title: String!): Note!
+	duplicateNote(noteID: ID!): Note!
+	deleteNote(noteID: ID!): Boolean!
+}
+
+input CreateUserInput {
+	username: String!
+	password: String!
+	passcode: String!
+	chargeMonth: String!
+	stripeCardID: String!
+	stripeCardBrand: String!
+	stripeCardLastFour: String!
+}
+
+type Date {
+	year: Int!
+	month: Int!
+	day: Int!
+}
+
+type User {
+	userID: ID!
+	createdAt: String!
+	updatedAt: String!
+	username: String!
+
+	# billing
+	# subscriptions
+	notes(limit: Int, offset: Int): [Note!]!
+}
+
+type Note {
+	userID: ID!
+	noteID: ID!
+	createdAt: String!
+	updatedAt: String!
+	titleUTF8Count: Int!
+	title: String!
+	dataUTF8Count: Int!
+	data280: String!
+	data: String!
+}
