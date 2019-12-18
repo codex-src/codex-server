@@ -5,7 +5,7 @@ schema {
 
 type Query {
 	ping: Boolean!
-	testUsername(username: String!): Boolean!
+	testUsernameTaken(username: String!): Boolean!
 	nextMonth: Date!
 	nextYear: Date!
 	me: User!

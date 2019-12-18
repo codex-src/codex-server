@@ -17,7 +17,7 @@ type User struct {
 	Notes []*Note
 }
 
-func (r *RootRx) TestUsername(ctx context.Context, args struct{ Username string }) (bool, error) {
+func (r *RootRx) TestUsernameTaken(ctx context.Context, args struct{ Username string }) (bool, error) {
 	currUser := CurrentSessionFromContext(ctx)
 	if !currUser.IsUnauth() {
 		return false, ErrUserMustBeUnauth
