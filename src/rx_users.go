@@ -24,7 +24,7 @@ func (r *RootRx) TestUsernameTaken(ctx context.Context, args struct{ Username st
 	}
 	var ok bool
 	err := DB.QueryRow(`
-		select count(*) = 0
+		select count(*) != 0
 		from users
 		where username = $1
 	`, args.Username).Scan(&ok)
