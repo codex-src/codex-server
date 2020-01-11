@@ -19,7 +19,7 @@ func (r *RootRx) NextMonth(ctx context.Context) (*DateRx, error) {
 	if err != nil {
 		return nil, err
 	}
-	date := &Date{int32(t.Year()), int32(t.Month() - 1), int32(t.Day())}
+	date := &Date{int32(t.Year()), int32(t.Month()), int32(t.Day())}
 	return &DateRx{date}, nil
 }
 
@@ -31,7 +31,7 @@ func (r *RootRx) NextYear(ctx context.Context) (*DateRx, error) {
 	if err != nil {
 		return nil, err
 	}
-	date := &Date{int32(t.Year()), int32(t.Month() - 1), int32(t.Day())}
+	date := &Date{int32(t.Year()), int32(t.Month()), int32(t.Day())}
 	return &DateRx{date}, nil
 }
 
